@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import PerformanceChart from "../../components/charts/PerformanceChart";
 import TeamComparison from "../../components/comparisons/TeamComparison";
-import { MarqueeDemo } from "../../components/MarqueeDemo";
 import PlayerRanking from "../../components/rankings/PlayerRanking";
 import PlayerStats from "../../components/stats/PlayerStats";
 import TeamStats from "../../components/stats/TeamStats";
+import { TwitZone } from "../../components/TwitZone";
 
 export default function Dashboard() {
   const [userId, setUserId] = useState<string | null>(null);
@@ -175,12 +175,12 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Marquee Demo */}
-      <MarqueeDemo />
+      {/* TwitZone */}
+      <TwitZone />
 
       {/* Main content area */}
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="px-4 py-6 sm:px-0">
+        <div className="px-4 sm:px-0">
           <h1 className="text-3xl font-semibold text-gray-900 mb-6">
             Soccer Statistics Dashboard
           </h1>

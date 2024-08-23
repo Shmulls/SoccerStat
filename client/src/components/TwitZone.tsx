@@ -1,6 +1,5 @@
 import Marquee from "@/components/magicui/marquee";
 import { cn } from "@/lib/utils";
-import React from "react";
 
 const reviews = [
   {
@@ -41,9 +40,6 @@ const reviews = [
   },
 ];
 
-const firstRow = reviews.slice(0, reviews.length / 2);
-const secondRow = reviews.slice(reviews.length / 2);
-
 const ReviewCard = ({
   img,
   name,
@@ -83,16 +79,16 @@ const ReviewCard = ({
   );
 };
 
-export function MarqueeDemo() {
+export function TwitZone() {
   return (
-    <div className="relative h-[160px] w-full overflow-hidden rounded-lg border bg-background md:shadow-xl">
+    <div className="relative h-24 sm:h-28 md:h-32 lg:h-36 w-full overflow-hidden bg-white shadow-sm">
       <Marquee className="[--duration:90s] [--gap:1rem]" pauseOnHover>
         {reviews.map((review) => (
           <ReviewCard key={review.username} {...review} />
         ))}
       </Marquee>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background"></div>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-white"></div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-white"></div>
     </div>
   );
 }

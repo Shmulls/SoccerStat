@@ -7,6 +7,9 @@ const config: Config = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   prefix: "",
   theme: {
@@ -86,7 +89,7 @@ const config: Config = {
     },
   },
   plugins: [
-    function ({ addUtilities, theme }) {
+    function ({ addUtilities, theme }: { addUtilities: any; theme: any }) {
       const newUtilities = {
         ".animate-marquee": {
           animation: "marquee var(--duration) linear infinite",
