@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import PerformanceChart from "../../components/charts/PerformanceChart";
 import TeamComparison from "../../components/comparisons/TeamComparison";
+import { MarqueeDemo } from "../../components/MarqueeDemo";
 import PlayerRanking from "../../components/rankings/PlayerRanking";
 import PlayerStats from "../../components/stats/PlayerStats";
 import TeamStats from "../../components/stats/TeamStats";
@@ -173,6 +174,9 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+
+      {/* Marquee Demo */}
+      <MarqueeDemo />
 
       {/* Main content area */}
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
