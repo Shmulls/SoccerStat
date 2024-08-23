@@ -3,6 +3,11 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import PerformanceChart from "../../components/charts/PerformanceChart";
+import TeamComparison from "../../components/comparisons/TeamComparison";
+import PlayerRanking from "../../components/rankings/PlayerRanking";
+import PlayerStats from "../../components/stats/PlayerStats";
+import TeamStats from "../../components/stats/TeamStats";
 
 export default function Dashboard() {
   const [userId, setUserId] = useState<string | null>(null);
@@ -23,6 +28,57 @@ export default function Dashboard() {
     localStorage.removeItem("userId");
     router.push("/login");
   };
+
+  // Sample data for components
+  const teamStatsData = {
+    teamName: "Example FC",
+    gamesPlayed: 38,
+    wins: 20,
+    draws: 10,
+    losses: 8,
+    goalsFor: 65,
+    goalsAgainst: 40,
+  };
+
+  const playerStatsData = {
+    playerName: "John Doe",
+    position: "Forward",
+    gamesPlayed: 35,
+    goals: 22,
+    assists: 10,
+    yellowCards: 5,
+    redCards: 1,
+  };
+
+  const performanceData = {
+    labels: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"],
+    datasets: [
+      {
+        label: "Goals Scored",
+        data: [2, 3, 1, 4, 2],
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+      {
+        label: "Goals Conceded",
+        data: [1, 2, 2, 1, 3],
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+      },
+    ],
+  };
+
+  const teamComparisonData = {
+    team1: { name: "Team A", wins: 15, goalsFor: 45 },
+    team2: { name: "Team B", wins: 12, goalsFor: 38 },
+  };
+
+  const playerRankingData = [
+    { name: "Player 1", goals: 20, assists: 5 },
+    { name: "Player 2", goals: 15, assists: 12 },
+    { name: "Player 3", goals: 18, assists: 7 },
+    { name: "Player 4", goals: 10, assists: 15 },
+  ];
 
   if (!userId) {
     return <div>Loading...</div>;
@@ -121,12 +177,34 @@ export default function Dashboard() {
       {/* Main content area */}
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
-          <div className="border-4 border-dashed border-gray-200 rounded-lg h-96">
-            <h1 className="text-2xl font-semibold text-gray-900 p-4">
-              Welcome to your Dashboard
-            </h1>
-            <p className="text-gray-600 p-4">Your user ID: {userId}</p>
-            {/* Add more dashboard content here */}
+          <h1 className="text-3xl font-semibold text-gray-900 mb-6">
+            Soccer Statistics Dashboard
+          </h1>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <TeamStats {...teamStatsData} />
+            <PlayerStats {...playerStatsData} />
+          </div>
+
+          <div className="mt-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              Performance Chart
+            </h2>
+            <PerformanceChart
+              labels={performanceData.labels}
+              datasets={performanceData.datasets}
+            />
+          </div>
+
+          <div className="mt-8">
+            <TeamComparison
+              team1={teamComparisonData.team1}
+              team2={teamComparisonData.team2}
+            />
+          </div>
+
+          <div className="mt-8">
+            <PlayerRanking players={playerRankingData} />
           </div>
         </div>
       </div>
